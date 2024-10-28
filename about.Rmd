@@ -1,0 +1,21 @@
+---
+title: "About this website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: sandstone
+---
+
+# Information about this website
+
+tHIS WEBSITE
+
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+
+
+sometimes i use [google](https://www.google.com/)to do datascience
+
+This is ny te.
+![](pictures/stars.jpg)
+<img src="pictures/stars.jpg" style="width:75%">

@@ -1,0 +1,24 @@
+---
+title: "My awesome website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: sandstone
+---
+
+# This is Yining's awesome website
+
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+
+
+sometimes i use [google](https://www.google.com/)to do datascience
+
+This is ny te.
+![](pictures/stars.jpg)
+<img src="pictures/stars.jpg" style="width:75%">
+
+
+
+
+If you want to know more about the website, visit[this page](about.html)
