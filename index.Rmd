@@ -7,7 +7,7 @@ output:
     theme: sandstone
 ---
 
-# This is Yining's awesome website
+# This is Yining's awesome webs
 
 ![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
 
