@@ -1,0 +1,26 @@
+---
+title: "My Hobbies"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+### On this page, I will share some of my niche hobbies, which might offer a glimpse into the real-world me.
+
+
+##### My latest passion is creating ball-jointed dolls out of resin, then doing their makeup, making their eyes, and designing clothes for them. This hobby helps me overcome my past anxiety, allowing me to focus on something I truly care about.
+
+<img src="pictures/1.jpg" style="width:75%">
+<img src="pictures/2.jpg" style="width:75%">
+<img src="pictures/3.jpg" style="width:75%">
+
+
+
+
+
+
+
+
+

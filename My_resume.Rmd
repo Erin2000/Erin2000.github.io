@@ -1,0 +1,12 @@
+---
+title: "My resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+#### This is my resume.Compared to my current studies, I would rather return to my country and work as a veterinarian again.
+
+<img src=pictures/He,Yining_Resume_00.png>
