@@ -1,0 +1,37 @@
+---
+title: "Plotly"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# Here are some plots
+```{r include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(dplyr)
+library(plotly)
+library(readxl)
+```
+
+Import New York state weather stations data from January 1, 1981 through December 31, 2010.
+```{r include=FALSE}
+nynoaadat <- read_csv("nynoaadat.csv")
+nynoaadat_cleaned <- nynoaadat %>%
+  filter(!(is.na(prcp) & is.na(snow) & is.na(snwd) & is.na(tmax) & is.na(tmin)))
+view(nynoaadat_cleaned)
+```
+The data of NY  state weather stations data shows the 
+id: Weather station ID
+date: Date of observation
+prcp: Precipitation (tenths of mm)
+snow: Snowfall (mm)
+snwd: Snow depth (mm)
+tmax: Maximum temperature (tenths of degrees C)
+tmin: Minimum temperature (tenths of degrees C) from January 1, 1981 through December 31, 2010. It contains r nrow(nycrental) observation and r ncol(nycrental) columns.
+
+
+
+
