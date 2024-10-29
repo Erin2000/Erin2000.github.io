@@ -4,11 +4,11 @@ navbar:
   title: "Home"
   right:
     - text: "My resume"
-      href: My_Resume.html
+      href: My_resume.html
     - text: "My hobbies"
       href: My_hobbies.html
-    - text: "Ploty"
-      href: Ploty.html
+    - text: "Plotly"
+      href: Plotly.html
     - icon: fa-envelope fa-lg
       href: mailto:yh3683@cumc.columbia.edu
     - icon: fa-github fa-lg
