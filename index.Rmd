@@ -7,7 +7,7 @@ output:
     theme: cerulean
 ---
 
-### This website will provide a brief introduction to my academic and work experience, as well as my hobbies.
+### This website will provide a brief introduction to my academic, work experience and my hobbies。
 
 
 ![](https://media.giphy.com/media/BN9OrijIQZxy4OPfBG/giphy.gif?cid=ecf05e47g7mc4gbzxv1lzja34npiyxk8v0kqbu98c4x4moia&ep=v1_gifs_related&rid=giphy.gif&ct=g)
