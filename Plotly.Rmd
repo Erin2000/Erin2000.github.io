@@ -45,7 +45,7 @@ nynoaadat_cleaned <- nynoaadat %>%
   )
 ```
 
-```{r}
+```{r include=FALSE}
 # Create station summary for scatter plot
 station_summary <- nynoaadat_cleaned %>%
   group_by(id) %>%
@@ -58,7 +58,7 @@ station_summary <- nynoaadat_cleaned %>%
 ```
 
 Shows relationship between average maximum temperature and precipitation for each station.
-```{r}
+```{r echo=FALSE}
 plot_ly(
   data = station_summary,
   x = ~avg_tmax,
@@ -86,7 +86,7 @@ plot_ly(
 ```
 
 Shows monthly distribution of maximum and minimum temperatures.
-```{r}
+```{r echo=FALSE}
 # Box plot of temperature by month
 nynoaadat_cleaned %>%
   plot_ly(
@@ -110,7 +110,7 @@ nynoaadat_cleaned %>%
 ```
 
 Shows annual snowfall trends.
-```{r}
+```{r echo=FALSE}
 # Bar plot of average annual snowfall
 nynoaadat_cleaned %>%
   group_by(year) %>%

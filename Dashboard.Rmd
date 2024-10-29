@@ -1,0 +1,146 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(dplyr)
+library(plotly)
+library(readxl)
+```
+Import New York state weather stations data from January 1, 1981 through December 31, 2010.
+```{r include=FALSE}
+nynoaadat <- read_csv("nynoaadat.csv")
+nynoaadat_cleaned <- nynoaadat %>%
+  filter(!(is.na(prcp) & is.na(snow) & is.na(snwd) & is.na(tmax) & is.na(tmin)))
+view(nynoaadat_cleaned)
+```
+The data of NY  state weather stations data shows the 
+id: Weather station ID
+date: Date of observation
+prcp: Precipitation (tenths of mm)
+snow: Snowfall (mm)
+snwd: Snow depth (mm)
+tmax: Maximum temperature (tenths of degrees C)
+tmin: Minimum temperature (tenths of degrees C) from January 1, 1981 through December 31, 2010. It contains `r nrow(nynoaadat_cleaned)` observation and `r ncol(nynoaadat_cleaned)` columns.
+
+Mutate the cleaned data to prepare for making plots
+```{r include=FALSE}
+nynoaadat_cleaned <- nynoaadat %>%
+  mutate(
+    date = as.Date(date),
+    month = month(date, label = TRUE),
+    year = year(date),
+    tmax = tmax / 10,  # Convert to degrees C
+    tmin = tmin / 10,  # Convert to degrees C
+    prcp = prcp / 10   # Convert to mm
+  )
+```
+
+```{r include=FALSE}
+# Create station summary for scatter plot
+station_summary <- nynoaadat_cleaned %>%
+  group_by(id) %>%
+  summarize(
+    avg_tmax = mean(tmax, na.rm = TRUE),
+    avg_prcp = mean(prcp, na.rm = TRUE),
+    n_obs = n()
+  ) %>%
+  filter(!is.na(avg_tmax), !is.na(avg_prcp))
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+nynoaadat_cleaned %>%
+  plot_ly(
+    x = ~month,
+    y = ~tmax,
+    type = "box",
+    name = "Max Temp",
+    color = I("#1f77b4")
+  ) %>%
+  add_trace(
+    y = ~tmin,
+    name = "Min Temp",
+    color = I("#ff7f0e")
+  ) %>%
+  layout(
+    title = "Temperature Distribution by Month",
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Temperature (°C)"),
+    showlegend = TRUE
+  )
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+plot_ly(
+  data = station_summary,
+  x = ~avg_tmax,
+  y = ~avg_prcp,
+  type = "scatter",
+  mode = "markers",
+  marker = list(
+    size = 8,
+    opacity = 0.6
+  ),
+  color = ~avg_tmax,
+  text = ~paste(
+    "Station ID:", id,
+    "\nAvg Max Temp:", round(avg_tmax, 1), "°C",
+    "\nAvg Precipitation:", round(avg_prcp, 1), "mm",
+    "\nObservations:", n_obs
+  )
+) %>%
+  layout(
+    title = "Average Maximum Temperature vs Precipitation by Station",
+    xaxis = list(title = "Average Maximum Temperature (°C)"),
+    yaxis = list(title = "Average Precipitation (mm)"),
+    hovermode = "closest"
+  )
+```
+
+### Chart C
+
+```{r}
+nynoaadat_cleaned %>%
+  group_by(year) %>%
+  summarize(
+    avg_snow = mean(snow, na.rm = TRUE)
+  ) %>%
+  filter(!is.na(avg_snow)) %>%
+  plot_ly(
+    x = ~year,
+    y = ~avg_snow,
+    type = "bar",
+    marker = list(
+      color = ~avg_snow,
+      colorscale = "Viridis"
+    ),
+    text = ~paste(
+      "Year:", year,
+      "\nAvg Snowfall:", round(avg_snow, 1), "mm"
+    )
+  ) %>%
+  layout(
+    title = "Average Annual Snowfall",
+    xaxis = list(title = "Year"),
+    yaxis = list(title = "Average Snowfall (mm)"),
+    showlegend = FALSE
+  )
+```
+
